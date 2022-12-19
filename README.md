@@ -77,6 +77,9 @@ No Authorization needed
 
 **POST** /api/v1/register
 
+![image](https://user-images.githubusercontent.com/83363396/208460669-b344f051-4cc9-453b-b35e-b16652afe837.png)
+
+
 ### Logout
 
 Authorization needed (token)
