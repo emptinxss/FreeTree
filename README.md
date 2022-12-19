@@ -51,14 +51,14 @@ I suggest to use a dummy email adress like: **test@example.com**
 
 You can try the front end [here](https://freetree.up.railway.app)
 
-You will find the REST API [here](https://freetree.up.railway.app/api/v1/) then use the endpoints below
+You will find the REST API at https://freetree.up.railway.app/api/v1/ then use the endpoints below
 
 ## Usage
 
 Raccomended tool to try the requests. [Postman](https://www.postman.com/)
 
 For this request you need the authorization token that can be found in the response of the API when you perform login or register. You can also find that in the front end in the settings tab under token.
-Make sure to have Bearer token when you make a request as the example below:
+Make sure to have Bearer token when you make a request as the example in the logout section.
 
 REST API endpoints:
 
@@ -67,6 +67,9 @@ REST API endpoints:
 No Authorization needed
 
 **POST** /api/v1/register
+
+![image](https://user-images.githubusercontent.com/83363396/208458842-ace09fd7-1bd7-45a8-be78-d5d3a98ddebf.png)
+
 
 ### Login
 
@@ -79,6 +82,9 @@ No Authorization needed
 Authorization needed (token)
 
 **POST** /api/v1/register
+
+![image](https://user-images.githubusercontent.com/83363396/208459476-0356297f-c022-4acd-8389-d8b48a036c45.png)
+
 
 ### Users
 
