@@ -49,9 +49,9 @@ I suggest to use a dummy email adress like: **test@example.com**
 
 ## Getting Started
 
-You can try the front end [here]()
+You can try the front end [here](https://freetree.up.railway.app)
 
-You will find the REST API at []()then use the endpoints below
+You will find the REST API [here](https://freetree.up.railway.app/api/v1/) then use the endpoints below
 
 ## Usage
 
@@ -113,8 +113,7 @@ You can filter by **name** with [eq] that rappresent '=', in the dashboard secti
 
 ## Links
 
--   Test my app on []()
--   Try online API [Here]() (POST media request available only in local)
+-   Test my app on [Railway](https://freetree.up.railway.app)
 -   My other projects on [Github](https://github.com/emptinxss)
 
 ## License
