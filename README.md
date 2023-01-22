@@ -105,7 +105,7 @@ Authorization needed (token)
 ### Links
 
 -   **GET** /api/v1/mylinks - Get all the links you created
--   **GET** /api/v1/mylinks/{linkID} - Get a signle link associated with your account
+-   **GET** /api/v1/mylinks/{linkID} - Get a single link associated with your account with count and latest visit
 -   **POST** /api/v1/mylinks/new - Create a new link
 -   **POST** /api/v1/mylinks/{linkID} - Edit an existing link
 -   **DELETE** /api/v1/mylinks/{linkID} - Delete a link
