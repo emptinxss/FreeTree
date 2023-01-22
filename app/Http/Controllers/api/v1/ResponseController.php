@@ -4,7 +4,6 @@ namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
 
-
 class ResponseController extends Controller
 {
     protected function succResponse($result, $message, $status = 200)
@@ -19,7 +18,7 @@ class ResponseController extends Controller
         return response()->json($response, $status);
     }
 
-    protected function errResponse($error,  $status = 404)
+    protected function errResponse($error, $status = 404)
     {
         $response = [
             'success' => false,

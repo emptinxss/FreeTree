@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
-
 class AuthController extends ResponseController
 {
     /**
@@ -20,7 +19,6 @@ class AuthController extends ResponseController
     public function register(Request $request)
     {
         $validateUser = $request->validate(
-
             [
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email',
@@ -44,7 +42,6 @@ class AuthController extends ResponseController
 
             return $this->succResponse(['user' => $user, 'token' => $token], "User Created Successfully");
         } catch (\Exception $e) {
-
             return  $this->errResponse($e->getMessage(), 400);
         }
     }
@@ -58,7 +55,6 @@ class AuthController extends ResponseController
     {
         try {
             $validateUser = $request->validate(
-
                 [
                     'email' => 'required|email|string|exists:users,email',
                     'password' => 'required'
@@ -66,7 +62,6 @@ class AuthController extends ResponseController
             );
 
             if (!Auth::attempt($validateUser)) {
-
                 return  $this->errResponse("The provided credentials are not correct.", 400);
             }
 
@@ -75,7 +70,7 @@ class AuthController extends ResponseController
 
             return $this->succResponse(['user' => $user, 'token' => $token], "User Logged In Successfully");
         } catch (\Exception $e) {
-            return  $this->errResponse($e->getMessage(),  400);
+            return  $this->errResponse($e->getMessage(), 400);
         }
     }
 

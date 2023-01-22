@@ -4,10 +4,8 @@ namespace App\Filter\v1;
 
 use Illuminate\Http\Request;
 
-
 class UsersFilter
 {
-
     protected $safeParams = [
         'name' => ['eq']
     ];

@@ -21,18 +21,16 @@ class UserController extends ResponseController
         if (count($filteredItem) == 0) {
             if (count($pUsers) == 0) {
                 return  $this->succResponse($pUsers, "There is no public user available at the moment.");
-            } else {
-                return $this->succResponse($pUsers, "Public Users Found Succesfully.");
             }
-        } else {
-            $filterPublicUser = $user->where('public', true)->where($filteredItem)->get();
-            if (count($filterPublicUser) == 0) {
-                return $this->errResponse("There is no public user with that name.");
-            } else {
-                return $this->succResponse($filterPublicUser, "Filtered Users Found Succesfully.");
-            }
+            return $this->succResponse($pUsers, "Public Users Found Succesfully.");
         }
+        $filterPublicUser = $user->where('public', true)->where($filteredItem)->get();
+        if (count($filterPublicUser) == 0) {
+            return $this->errResponse("There is no public user with that name.");
+        }
+        return $this->succResponse($filterPublicUser, "Filtered Users Found Succesfully.");
     }
+
     public function getUser()
     {
         /** @var User $user */
@@ -40,27 +38,23 @@ class UserController extends ResponseController
 
         return $this->succResponse($user, "User  Found Succesfully.");
     }
+
     public function show($username, User $user)
     {
-
         $publicUser = $user->where('name', '=', $username)->where('public', true)->get();
 
         if (count($publicUser) == 0) {
             return  $this->errResponse("0 Users Found.", 404);
-        } else {
-
-            $filterUser = ['name' => $publicUser[0]->name, 'image' => $publicUser[0]->image, 'links' => $publicUser[0]->links];
-            return $this->succResponse($filterUser,  "Public User Found Succesfully.", 200);
         }
-    }
 
+        $filterUser = ['name' => $publicUser[0]->name, 'image' => $publicUser[0]->image, 'links' => $publicUser[0]->links];
+        return $this->succResponse($filterUser, "Public User Found Succesfully.", 200);
+    }
 
     public function update(Request $request)
     {
-
         /** @var User $user */
         $user = Auth::user();
-
 
         $validateUser = $request->validate(
             [
@@ -73,7 +67,6 @@ class UserController extends ResponseController
 
         return $this->succResponse($user, "User Updated Succesfully.");
     }
-
 
     public function upload(Request $request)
     {
@@ -89,7 +82,6 @@ class UserController extends ResponseController
             ]);
 
             if ($newfile->isValid()) {
-
                 $file_path = $newfile->store('images', 'public_uploads');
 
                 $exiestedImage = $user->image;
@@ -102,10 +94,10 @@ class UserController extends ResponseController
 
                 return $this->succResponse($user->image, "Image Updated Succesfully.");
             }
-        } else {
-            return  $this->errResponse("File Not Found.");
         }
+        return  $this->errResponse("File Not Found.");
     }
+
     public function publicUser()
     {
         /** @var User $user */
@@ -119,9 +111,9 @@ class UserController extends ResponseController
 
         return $this->succResponse($user, "Your user is now public.");
     }
-    public function destroy(User $user)
-    {
 
+    public function destroy()
+    {
         /** @var User $user */
         $user = Auth::user();
 

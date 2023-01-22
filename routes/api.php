@@ -25,26 +25,20 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
-
     //LINK
-
-    Route::get('/mylinks', [LinkController::class, 'index']);
-    Route::post('/mylinks/new',  [LinkController::class, 'store']);
-    Route::get('/mylinks/{link}',  [LinkController::class, 'show']);
-    Route::post('/mylinks/{link}',  [LinkController::class, 'update']);
-    Route::delete('/mylinks/{link}',  [LinkController::class, 'destroy']);
-
-
-
+    Route::get('/links', [LinkController::class, 'index']);
+    Route::post('/links/new', [LinkController::class, 'store']);
+    Route::get('/links/{link}', [LinkController::class, 'show']);
+    Route::post('/links/{link}', [LinkController::class, 'update']);
+    Route::delete('/links/{link}', [LinkController::class, 'destroy']);
 
     //USER SETTINGS
-
     Route::get('/dashboard', [UserController::class, 'index']);
-    Route::get('/user/data', [UserController::class, 'getUser']);
-    Route::put('/settings/edit', [UserController::class, 'update']);
-    Route::post('/settings/edit/upload/image', [UserController::class, 'upload']);
-    Route::post('/settings/public', [UserController::class, 'publicUser']);
-    Route::delete('/settings',  [UserController::class, 'destroy']);
+    Route::get('/users/data', [UserController::class, 'getUser']);
+    Route::put('/users/settings/edit', [UserController::class, 'update']);
+    Route::post('/users/settings/edit/upload/image', [UserController::class, 'upload']);
+    Route::post('/users/settings/public', [UserController::class, 'publicUser']);
+    Route::delete('/users/settings', [UserController::class, 'destroy']);
 
     //LOGOUT
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -54,4 +48,4 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
 Route::post('/v1/visit/{link}', [VisitController::class, 'store']);
 
 //USER PUBLIC
-Route::get('/v1/{username}', [UserController::class, 'show']);
+Route::get('/v1/users/{username}', [UserController::class, 'show']);

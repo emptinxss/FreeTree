@@ -8,9 +8,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class LinkController extends ResponseController
 {
+    public function __construct()
+    {
+        $this->middleware('checklink')->only('show', 'update', 'destroy');
+    }
     public function index()
     {
         /** @var User $user */
@@ -19,15 +22,12 @@ class LinkController extends ResponseController
         $linkId = $user->links()->where('user_id', $id)->get();
         if (count($linkId) == 0) {
             return  $this->succResponse([], "Links not found");
-        } else {
-            $links = $user->links()->where('user_id', $id)->withCount('visits')->with('latest_visit')->get();
-            return $this->succResponse($links, "Links  Found Succesfully.");
         }
+        $links = $user->links()->where('user_id', $id)->withCount('visits')->with('latest_visit')->get();
+        return $this->succResponse($links, "Links  Found Succesfully.");
     }
-
     public function store(Request $request)
     {
-
         try {
             $validateLink = $request->validate(
                 [
@@ -35,7 +35,6 @@ class LinkController extends ResponseController
                     'link' => 'required|url'
                 ]
             );
-
             /** @var User $user */
             $user = Auth::user();
             $link = $user->links()->create($validateLink);
@@ -46,37 +45,24 @@ class LinkController extends ResponseController
     }
     public function show(Link $link)
     {
-        if ($link->user_id != Auth::id()) {
-            return  $this->errResponse("You can access only your link associated.", 401);
-        } else {
-            return $this->succResponse($link, "Link Found Succesfully.");
-        }
+        $filterLink = $link->where('id', $link->id)->withCount('visits')->with('latest_visit')->get();
+        return $this->succResponse($filterLink, "Link Found Succesfully.");
     }
     public function update(Request $request, Link $link)
     {
+        $validateLink = $request->validate(
+            [
+                'link_name' => 'sometimes|string|max:255',
+                'link' => 'sometimes|url'
+            ]
+        );
 
-        if ($link->user_id != Auth::id()) {
-            return  $this->errResponse("You can access only your link associated.", 401);
-        } else {
-
-            $validateLink = $request->validate(
-                [
-                    'link_name' => 'sometimes|string|max:255',
-                    'link' => 'sometimes|url'
-                ]
-            );
-
-            $link->update($validateLink);
-            return $this->succResponse(['link' => $link, 'index' => $request->index], "Link Updated Succesfully.");
-        }
+        $link->update($validateLink);
+        return $this->succResponse(['link' => $link, 'index' => $request->index], "Link Updated Succesfully.");
     }
     public function destroy(Link $link)
     {
-        if ($link->user_id != Auth::id()) {
-            return  $this->errResponse("You can access only your link associated.", 401);
-        } else {
-            $link->delete();
-            return $this->succResponse([], "Link Deleted Succesfully.");
-        }
+        $link->delete();
+        return $this->succResponse([], "Link Deleted Succesfully.");
     }
 }
