@@ -75,7 +75,7 @@ No Authorization needed
 
 No Authorization needed
 
-**POST** /api/v1/register
+**POST** /api/v1/login
 
 ![image](https://user-images.githubusercontent.com/83363396/208460669-b344f051-4cc9-453b-b35e-b16652afe837.png)
 
@@ -84,7 +84,7 @@ No Authorization needed
 
 Authorization needed (token)
 
-**POST** /api/v1/register
+**POST** /api/v1/logout
 
 ![image](https://user-images.githubusercontent.com/83363396/208459476-0356297f-c022-4acd-8389-d8b48a036c45.png)
 
@@ -93,22 +93,22 @@ Authorization needed (token)
 
 -   **GET** /api/v1/dashboard - Get all the public users
 -   **GET** /api/v1/user/data - Get the data of your account
--   **GET** /api/v1/{username} - Get the public user page (if the user is public) \*no authorization needed
--   **PUT** /api/v1/settings/edit - Edit your name or email
--   **POST** /api/v1/settings/edit/upload/image - Edit your profile picture
--   **POST** /api/v1/settings/public - Set your user public or private (default is private)
--   **DELETE** /api/v1/settings - Delete your account
+-   **GET** /api/v1/users/{username} - Get the public user page (if the user is public) \*no authorization needed
+-   **PUT** /api/v1/useres/settings/edit - Edit your name or email
+-   **POST** /api/v1/users/settings/edit/upload/image - Edit your profile picture
+-   **POST** /api/v1/users/settings/public - Set your user public or private (default is private)
+-   **DELETE** /api/v1/users/settings - Delete your account
 
 > **Note**
 > If you set your user public it will be visible to anyone, to all the FreeTree users in the dashboard page and even to doesn't have an account if they have the URL of your public user page.
 
 ### Links
 
--   **GET** /api/v1/mylinks - Get all the links you created
--   **GET** /api/v1/mylinks/{linkID} - Get a single link associated with your account with count and latest visit
--   **POST** /api/v1/mylinks/new - Create a new link
--   **POST** /api/v1/mylinks/{linkID} - Edit an existing link
--   **DELETE** /api/v1/mylinks/{linkID} - Delete a link
+-   **GET** /api/v1/links - Get all the links you created
+-   **GET** /api/v1/links/{linkID} - Get a single link associated with your account with count and latest visit
+-   **POST** /api/v1/links/new - Create a new link
+-   **POST** /api/v1/links/{linkID} - Edit an existing link
+-   **DELETE** /api/v1/links/{linkID} - Delete a link
 
 ### Filter
 
